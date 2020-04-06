@@ -147,7 +147,7 @@ jobs:
     steps:
       - git_checkout_from_cache
       - npm_install
-      - build
+      - build    
   release_development:
     docker:
       - image: circleci/node:12.13.0-stretch
@@ -173,25 +173,25 @@ jobs:
           k8s_svc_name: "webtrader-binary-com"
           docker_tag: ${CIRCLE_SHA1}
 
-workflows: 
+workflows:
+  test:
+    jobs:
+      - test  
   release_development:
     jobs:  
       - release_development:
-          context: binary-frontend-artifact-upload
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^development$/  
+          context: binary-frontend-artifact-upload  
   release_production:
     jobs:      
       - release_production:
-          context: binary-frontend-artifact-upload
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^master$/
-  test:
-    jobs:
-      - test              
+          context: binary-frontend-artifact-upload             
