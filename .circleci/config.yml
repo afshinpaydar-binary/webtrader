@@ -177,10 +177,11 @@ workflows:
   test:
     jobs:
       - test:
-        filters:
-          ignore:
-            -  /^development$/
-            -  /^master$/
+          filters:
+            branches:
+              ignore:
+                -  /^development$/
+                -  /^master$/
   release_development:
     jobs:  
       - release_development:
