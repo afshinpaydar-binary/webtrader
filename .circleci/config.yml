@@ -171,7 +171,7 @@ jobs:
           docker_latest_tag: "latest"
       - k8s_deploy:
           k8s_svc_name: "webtrader-binary-com"
-          docker_tag: ${CIRCLE_SHA1}
+          docker_tag: "${CIRCLE_SHA1}"
 
 workflows:
   test:
